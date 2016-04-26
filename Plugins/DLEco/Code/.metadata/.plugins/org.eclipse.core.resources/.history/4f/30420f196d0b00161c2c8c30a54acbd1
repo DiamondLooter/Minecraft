@@ -1,0 +1,7 @@
+package family.thelooter.ddl.dleco;
+
+public class PlayerData {
+	public void createPath () {
+		this.getConfig().createSection(String path, Map< String, Object > map)
+	}
+}

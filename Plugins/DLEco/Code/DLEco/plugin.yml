@@ -1,0 +1,7 @@
+name: DLEco
+main: family.thelooter.ddl.dleco.MainClass
+version: 1.0
+commands:
+	balance:
+		description: Shows your balance.
+		usage: /<command>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="org.bukkit.plugin.java.JavaPlugin"/>
+<fullyQualifiedTypeName name="org.bukkit.command.CommandSender"/>
+<fullyQualifiedTypeName name="org.bukkit.command.Command"/>
+<fullyQualifiedTypeName name="java.io.File"/>
+<fullyQualifiedTypeName name="org.bukkit.configuration.file.FileConfiguration"/>
+<fullyQualifiedTypeName name="org.bukkit.configuration.file.YamlConfiguration"/>
+<fullyQualifiedTypeName name="org.bukkit.permissions.Permission"/>
+<fullyQualifiedTypeName name="org.bukkit.plugin.PluginManager"/>
+<fullyQualifiedTypeName name="org.bukkit.entity.Player"/>
+<fullyQualifiedTypeName name="net.md_5.bungee.api.ChatColor"/>
+<fullyQualifiedTypeName name="com.th3shadowbroker.loc.obj.PlayerProfile"/>
+<fullyQualifiedTypeName name="org.bukkit.Bukkit"/>
+</qualifiedTypeNameHistroy>

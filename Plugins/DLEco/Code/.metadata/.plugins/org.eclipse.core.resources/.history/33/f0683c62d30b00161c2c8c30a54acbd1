@@ -1,0 +1,63 @@
+package family.thelooter.ddl.dleco;
+
+import org.bukkit.Bukkit;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+import org.bukkit.permissions.Permission;
+import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.PluginManager;
+import org.bukkit.plugin.java.JavaPlugin;
+
+import com.th3shadowbroker.loc.obj.PlayerProfile;
+
+import net.md_5.bungee.api.ChatColor;
+
+public class MainClass extends JavaPlugin {
+	public Plugin plName = this;
+	public Permission playerPermission = new Permission("dleco.server.withdraw");
+	@Override
+	public void onEnable() {
+		new PermListener(this);
+		PluginManager pm = getServer().getPluginManager();
+		pm.addPermission(playerPermission);
+	}
+	@Override
+	public void onDisable() {
+		
+	}
+	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+		if (cmd.getName().equalsIgnoreCase("balance") && sender instanceof Player) {
+			Player player = (Player) sender;
+			PlayerProfile profile = new PlayerProfile(plName, player);
+			Object balance = profile.getStatInt("balance");
+			if (balance == null) {
+				profile.setStat("balance", getConfig().getInt("Default-Money"));
+				this.saveConfig();
+				this.reloadConfig();
+			}
+			player.sendMessage(ChatColor.RED + "Balance: " + ChatColor.GREEN + balance.toString());
+			this.saveConfig();
+			this.reloadConfig();
+		}
+		if (cmd.getName().equalsIgnoreCase("pay") && sender instanceof Player) {
+			Player player = (Player) sender;
+			Player target = (Bukkit.getServer().getPlayer(args[0]));
+			PlayerProfile profile = new PlayerProfile(plName, player);
+			PlayerProfile Tprofile = new PlayerProfile(plName, player);
+			if (target == null) {
+				player.sendMessage(args[0] + " is not online");
+			} else if (Integer.parseInt(args[1]) > 0) {
+				int balance = profile.getStatInt("balance");
+				int Tbalance = Tprofile.getStatInt("balance");
+				if (balance >= Integer.parseInt(args[1])) {
+					profile.setStat("balance", balance - Integer.parseInt(args[1]));
+					Tprofile.setStat("balance", Tbalance - Integer.parseInt(args[1]));
+					player.sendMessage(ChatColor.GREEN + args[0] + " has been sent $" + args[1]);
+					target.sendMessage(ChatColor.GREEN + player.toString() + " has given you $" + args[1]);
+				}
+			}
+		}
+		return false;
+	}
+}
